@@ -1,0 +1,5 @@
+#
+# [filter "profile-name"]
+#   smudge = sed 's/some-profile/a-different-profile/'
+#   clean = sed 's/a-different-profile/some-profile/'
+dynamodb/config.py filter=profile-name
