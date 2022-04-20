@@ -1,22 +1,8 @@
 from pprint import pprint
 
-from boto3.session import Session
+from config import TABLE_NAME
+from config import client, dynamodb
 
-from config import *
-
-# Don't need real credentials for local dynamodb
-# https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html
-credentials = dict(
-    aws_access_key_id='fake-key',
-    aws_secret_access_key='fake-secret-key',
-    aws_session_token='fake-token'
-)
-
-params = dict(
-    service_name='dynamodb',
-    region_name='us-west-2',
-    endpoint_url='http://localhost:8000'
-)
 
 table_name_attribute_map = {
     TABLE_NAME: dict(
@@ -25,10 +11,6 @@ table_name_attribute_map = {
         ttl_key='ttl'
     )
 }
-
-session = Session(**credentials)
-client = session.client(**params)
-dynamodb = session.resource(**params)
 
 existing_table_names = client.list_tables().get('TableNames', [])
 
