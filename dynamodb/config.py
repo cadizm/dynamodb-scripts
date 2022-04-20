@@ -1,7 +1,6 @@
 from boto3.session import Session
 
-ENV = 'development'
-TABLE_NAME = f'cheetah.{ENV}.dynamic.config'
+ENV = 'local'
 
 # -------------------------------------------------------------------------------------------------
 #   Configuration
